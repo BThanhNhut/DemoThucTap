@@ -13,14 +13,16 @@ export default function OtpScreen() {
   const [otp, setOtp] = useState<string>('');
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Xác nhận mã OTP</Text>
-      <Text style={styles.ContentText}>
-        Chúng tôi vừa gửi otp đến sdt người được bảo hiểm. Vui lòng nhập vào bên
-        dưới để các thông tin vừa rồi được xác nhận{' '}
-        <Text style={{fontWeight: 'bold'}}>
-          được xác nhận chính xác bởi người được bảo hiểm.
+      <View style={styles.boxtext}>
+        <Text style={styles.title}>Xác nhận mã OTP</Text>
+        <Text style={styles.ContentText}>
+          Chúng tôi vừa gửi mã OTP đến SĐT của người {'\n'} được bảo hiểm. Vui
+          lòng nhập vào bên dưới để {'\n'} các thông tin vừa rồi{' '}
+          <Text style={styles.ChildContentText}>
+            được xác nhận là chính {'\n'} xác bởi người được bảo hiểm.
+          </Text>
         </Text>
-      </Text>
+      </View>
       <OtpInput length={6} onOtpChange={setOtp} />
       <TouchableOpacity style={styles.button} activeOpacity={0.8}>
         <Text style={styles.textbutton}>Xác nhận</Text>
@@ -33,12 +35,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#e6efff',
-    paddingLeft: 10,
+    alignContent: 'center',
+  },
+  boxtext: {
+    marginLeft: 10,
   },
   title: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 24,
+    color: '#095EFB',
+    fontFamily: 'Raleway-Bold',
+    fontSize: 28,
     marginVertical: height * 0.02,
   },
   otpText: {
@@ -46,19 +51,23 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   ContentText: {
+    fontFamily: 'Raleway-Regular',
     marginVertical: height * 0.02,
+  },
+  ChildContentText: {
+    fontFamily: 'Raleway-Bold',
   },
   textbutton: {
     color: 'white',
-    fontSize: 12,
+    fontSize: 16,
   },
   button: {
     alignItems: 'center',
-    marginTop: height * 0.55,
+    marginTop: height * 0.5,
     justifyContent: 'center',
-    borderRadius: 20,
-    height: 40,
-    marginHorizontal: 20,
-    backgroundColor: '#fb7bbe',
+    borderRadius: 16,
+    height: 56,
+    margin: 10,
+    backgroundColor: '#FB7BBE',
   },
 });

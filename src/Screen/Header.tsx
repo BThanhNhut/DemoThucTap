@@ -31,8 +31,6 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     height: height * 0.08,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
   },
   row: {
     marginTop: 17,
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 17,
-    color: 'blue',
-    fontWeight: 'bold',
+    color: '#074BC9',
+    fontFamily: 'Raleway-Bold',
   },
 });
