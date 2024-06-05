@@ -16,10 +16,10 @@ export default function OtpScreen() {
       <View style={styles.boxtext}>
         <Text style={styles.title}>Xác nhận mã OTP</Text>
         <Text style={styles.ContentText}>
-          Chúng tôi vừa gửi mã OTP đến SĐT của người {'\n'} được bảo hiểm. Vui
-          lòng nhập vào bên dưới để {'\n'} các thông tin vừa rồi{' '}
+          Chúng tôi vừa gửi mã OTP đến SĐT của người {'\n'}được bảo hiểm. Vui
+          lòng nhập vào bên dưới để {'\n'}các thông tin vừa rồi{' '}
           <Text style={styles.ChildContentText}>
-            được xác nhận là chính {'\n'} xác bởi người được bảo hiểm.
+            được xác nhận là chính {'\n'}xác bởi người được bảo hiểm.
           </Text>
         </Text>
       </View>

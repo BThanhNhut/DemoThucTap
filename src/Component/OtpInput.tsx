@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '80%',
     alignSelf: 'center',
+    marginHorizontal: 16,
   },
   input: {
     textAlign: 'center',
