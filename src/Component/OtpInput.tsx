@@ -1,4 +1,5 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import {Text} from 'react-native';
 import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
 interface OtpInputProps {
@@ -8,34 +9,52 @@ interface OtpInputProps {
 
 export default function OtpInput({length, onOtpChange}: OtpInputProps) {
   const [otp, setOtp] = useState<string[]>(new Array(length).fill(''));
-  const inputs = useRef<(TextInput | null)[]>([]);
+  const [otpstring, setotpstring] = useState<string>('');
+  const textInputRef = useRef<TextInput>(null);
 
-  const handleChangeText = (text: string, index: number) => {
-    const newOtp = [...otp];
-    newOtp[index] = text;
-    setOtp(newOtp);
-    if (text && index < length - 1) {
-      inputs.current[index + 1]?.focus();
+  const handdleOTP = (text: string, index: number) => {
+    if (text.length <= length) {
+      console.log('kq', text + index);
+      textInputRef.current?.focus();
+      const lastElement = text[text.length - 1];
+      const newOtp = [...otp];
+      newOtp[index] = lastElement;
+      setOtp(newOtp);
     }
-    onOtpChange(newOtp.join(''));
   };
 
+  const handleTextInputChange = (text: string) => {
+    if (text.length <= length) {
+      setotpstring(text);
+      text.split('').forEach((char, index) => {
+        handdleOTP(char, index);
+      });
+      if (text.length < otpstring.length) {
+        const deletedCount = otpstring.length - text.length;
+        const lastKeptIndex = text.length;
+        for (let i = lastKeptIndex; i < lastKeptIndex + deletedCount; i++) {
+          handdleOTP('', i);
+        }
+      }
+    }
+  };
   return (
     <View style={styles.container}>
-      {otp.map((_, index) => (
-        <TouchableOpacity key={index} style={styles.border}>
-          <TextInput
-            style={styles.input}
-            onChangeText={text => handleChangeText(text, index)}
-            value={otp[index]}
-            keyboardType="numeric"
-            maxLength={1}
-            ref={ref => {
-              inputs.current[index] = ref;
-            }}
-          />
+      {otp.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.border}
+          onPress={() => handdleOTP(otpstring, index)}>
+          <Text style={styles.input}>{item}</Text>
         </TouchableOpacity>
       ))}
+      <TextInput
+        style={{width: 0, height: 0}}
+        ref={textInputRef}
+        keyboardType="numeric"
+        onChangeText={text => handleTextInputChange(text)}
+        maxLength={6}
+      />
     </View>
   );
 }
@@ -46,7 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '80%',
     alignSelf: 'center',
-    marginHorizontal: 16,
   },
   input: {
     textAlign: 'center',

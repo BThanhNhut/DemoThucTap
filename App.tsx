@@ -18,7 +18,7 @@ function App() {
           component={OtpScreen}
           options={{
             headerShown: true,
-            header: ({navigation, route}) => <Header navigation={navigation} />,
+            header: ({navigation}) => <Header navigation={navigation} />,
           }}
         />
       </Stack.Navigator>
