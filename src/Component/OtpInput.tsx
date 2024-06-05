@@ -9,33 +9,15 @@ interface OtpInputProps {
 
 export default function OtpInput({length, onOtpChange}: OtpInputProps) {
   const [otp, setOtp] = useState<string[]>(new Array(length).fill(''));
-  const [otpstring, setotpstring] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
-
-  const handdleOTP = (text: string, index: number) => {
-    if (text.length <= length) {
-      console.log('kq', text + index);
-      textInputRef.current?.focus();
-      const lastElement = text[text.length - 1];
-      const newOtp = [...otp];
-      newOtp[index] = lastElement;
-      setOtp(newOtp);
-    }
-  };
 
   const handleTextInputChange = (text: string) => {
     if (text.length <= length) {
-      setotpstring(text);
-      text.split('').forEach((char, index) => {
-        handdleOTP(char, index);
-      });
-      if (text.length < otpstring.length) {
-        const deletedCount = otpstring.length - text.length;
-        const lastKeptIndex = text.length;
-        for (let i = lastKeptIndex; i < lastKeptIndex + deletedCount; i++) {
-          handdleOTP('', i);
-        }
+      const newOtp = [...otp];
+      for (let i = 0; i < length; i++) {
+        newOtp[i] = text[i] || '';
       }
+      setOtp(newOtp);
     }
   };
   return (
@@ -44,7 +26,7 @@ export default function OtpInput({length, onOtpChange}: OtpInputProps) {
         <TouchableOpacity
           key={index}
           style={styles.border}
-          onPress={() => handdleOTP(otpstring, index)}>
+          onPress={() => textInputRef.current?.focus()}>
           <Text style={styles.input}>{item}</Text>
         </TouchableOpacity>
       ))}
