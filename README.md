@@ -7,7 +7,7 @@
          <div style="width: 150px; text-align: justify;">Màn hình splash</div>
       </td>
       <td align="center" width="250">
-
+         DEMO
       </td>
    </tr>
 </table>
