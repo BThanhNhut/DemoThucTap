@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   boxtext: {
-    marginLeft: 10,
+    marginHorizontal: 16,
   },
   title: {
     color: '#095EFB',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 16,
     height: 56,
-    margin: 10,
+    margin: 16,
     backgroundColor: '#FB7BBE',
   },
 });

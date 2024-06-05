@@ -18,10 +18,16 @@ function Header({navigation}: any) {
     <View style={styles.container}>
       <View style={styles.row}>
         <TouchableOpacity activeOpacity={0.8}>
-          <Icon5 name="left" size={22} color="blue" onPress={goBack}></Icon5>
+          <Icon5
+            style={styles.icon}
+            name="left"
+            size={24}
+            color="blue"
+            onPress={goBack}></Icon5>
         </TouchableOpacity>
-        <Text style={styles.title}> Xác Nhận Mã OTP</Text>
-        <View></View>
+        <View style={styles.boxtitle}>
+          <Text style={styles.title}> Xác Nhận Mã OTP</Text>
+        </View>
       </View>
     </View>
   );
@@ -37,11 +43,20 @@ const styles = StyleSheet.create({
     width: width,
     height: '80%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+  },
+  boxtitle: {
+    width: '80%',
+    height: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 17,
     color: '#074BC9',
     fontFamily: 'Raleway-Bold',
+  },
+  icon: {
+    marginLeft: 16,
+    marginRight: 20,
   },
 });
